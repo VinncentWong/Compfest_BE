@@ -60,18 +60,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //			cors.configurationSource(source);
 //		});
 	}
-	
-	@Bean
-	public CorsFilter corsFilter() {
-		CorsConfiguration corsConfiguration = new CorsConfiguration();
-		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-		corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
-		corsConfiguration.setExposedHeaders(Arrays.asList("*"));
-		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
-		return new CorsFilter(urlBasedCorsConfigurationSource);
-		
-	}
+//	@Bean
+//	public CorsFilter corsFilter() {
+//		CorsConfiguration corsConfiguration = new CorsConfiguration();
+//		corsConfiguration.setAllowCredentials(true);
+//		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+//		corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
+//		corsConfiguration.setExposedHeaders(Arrays.asList("*"));
+//		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+//		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+//		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+//		return new CorsFilter(urlBasedCorsConfigurationSource);
+//		
+//	}
 }
