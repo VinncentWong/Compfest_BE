@@ -24,4 +24,17 @@ public class JwtUtil {
 							.compact();
 		return token;
 	}
+	
+	public boolean validateToken(String token) {
+		try {
+			Jwts.parser()
+			.setSigningKey(Base64.encode(SECRET_KEY.getBytes()))
+			.parseClaimsJws(token);
+			return true;
+		}
+		catch(Exception exception) {
+			return false;
+		}
+					
+	}
 }

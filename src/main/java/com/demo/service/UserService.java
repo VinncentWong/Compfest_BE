@@ -11,7 +11,7 @@ import com.demo.dto.UserDto;
 import com.demo.entity.User;
 import com.demo.repository.UserRepository;
 import com.demo.util.AppResponse;
-import com.demo.util.Bcrypt;
+import com.demo.util.BcryptUtil;
 import com.demo.util.JwtUtil;
 
 @Service
@@ -24,14 +24,14 @@ public class UserService {
 	private AppResponse response;
 	
 	@Autowired
-	private Bcrypt bcrypt;
+	private BcryptUtil bcrypt;
 	
 	@Autowired
 	private JwtUtil jwt;
 	
 	public ResponseEntity<AppResponse> createUser(UserDto tempUser){
 		User user = new User();
-		user.setStudentID(tempUser.getUserId());
+		user.setStudentId(tempUser.getUserId());
 		user.setPassword(user.getPassword());
 		user.setPassword(bcrypt.bcrypt().encode(user.getPassword()));
 		userRepository.save(user);
@@ -41,9 +41,9 @@ public class UserService {
 	}
 	
 	public ResponseEntity<AppResponse> login(UserDto tempUser) {
-		Optional<User> user = userRepository.findByUserId(tempUser.getUserId());
+		Optional<User> user = userRepository.findByStudentId(tempUser.getUserId());
 		if(bcrypt.bcrypt().matches(user.get().getPassword(), user.get().getPassword())) {
-			String token = jwt.generateToken(user.get().getId(), user.get().getStudentID());
+			String token = jwt.generateToken(user.get().getId(), user.get().getStudentId());
 			response.getMap().put("message", "Success");
 			response.getMap().put("data", user);
 			response.getMap().put("token", token);

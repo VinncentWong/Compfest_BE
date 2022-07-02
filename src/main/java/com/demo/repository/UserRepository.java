@@ -9,5 +9,5 @@ import com.demo.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-	Optional<User> findByUserId(String userId);
+	Optional<User> findByStudentId(String studentId);
 }
