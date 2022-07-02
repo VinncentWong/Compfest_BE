@@ -4,10 +4,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.dto.UserDto;
@@ -15,6 +17,7 @@ import com.demo.service.UserService;
 import com.demo.util.AppResponse;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000"}, allowedHeaders = {"*"}, methods = {RequestMethod.DELETE, RequestMethod.GET, RequestMethod.PATCH, RequestMethod.POST, RequestMethod.PUT})
 public class UserController {
 	
 	@Autowired
