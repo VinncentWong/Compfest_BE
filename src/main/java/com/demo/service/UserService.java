@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import com.demo.dto.UserDto;
 import com.demo.entity.User;
 import com.demo.repository.UserRepository;
-
-import util.AppResponse;
-import util.Bcrypt;
+import com.demo.util.AppResponse;
+import com.demo.util.Bcrypt;
+import com.demo.util.JwtUtil;
 
 @Service
 public class UserService {
@@ -25,6 +25,9 @@ public class UserService {
 	
 	@Autowired
 	private Bcrypt bcrypt;
+	
+	@Autowired
+	private JwtUtil jwt;
 	
 	public ResponseEntity<AppResponse> createUser(UserDto tempUser){
 		User user = new User();
@@ -40,8 +43,15 @@ public class UserService {
 	public ResponseEntity<AppResponse> login(UserDto tempUser) {
 		Optional<User> user = userRepository.findByUserId(tempUser.getUserId());
 		if(bcrypt.bcrypt().matches(user.get().getPassword(), user.get().getPassword())) {
-			
+			String token = jwt.generateToken(user.get().getId(), user.get().getStudentID());
+			response.getMap().put("message", "Success");
+			response.getMap().put("data", user);
+			response.getMap().put("token", token);
+			return ResponseEntity.status(HttpStatus.OK).body(response);
 		}
+		response.getMap().put("message", "Error");
+		response.getMap().put("data", null);
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 	}
 	
 	public ResponseEntity<AppResponse> findUserById(Long id){
