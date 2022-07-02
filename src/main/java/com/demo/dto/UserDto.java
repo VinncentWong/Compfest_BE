@@ -9,7 +9,7 @@ import lombok.Data;
 public class UserDto {
 	@NotNull
 	@NotBlank
-	private String userId;
+	private String studentNumber;
 	
 	@NotNull
 	@NotBlank
