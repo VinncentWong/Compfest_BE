@@ -58,7 +58,7 @@ public class ItemService {
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 	
-	public ResponseEntity<AppResponse> findAllItem(String name){
+	public ResponseEntity<AppResponse> findAllItem(){
 		List<Item> items = itemRepository.findAll();
 		response.getMap().put("data", items);
 		response.getMap().put("message", "success");
