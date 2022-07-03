@@ -9,5 +9,5 @@ import com.demo.entity.Item;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long>{
-	Optional<Item> findByItemName(String name);
+	Optional<Item> findByName(String name);
 }

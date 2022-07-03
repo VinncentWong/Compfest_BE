@@ -17,7 +17,6 @@ public class ItemDto {
 	@NotBlank
 	private String description;
 	
-	@NotNull
 	private MultipartFile image;
 	
 	@NotNull

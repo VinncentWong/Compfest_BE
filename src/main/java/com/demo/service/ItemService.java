@@ -1,5 +1,6 @@
 package com.demo.service;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.demo.dto.ItemDto;
 import com.demo.entity.Item;
@@ -26,11 +28,11 @@ public class ItemService {
 	@Autowired
 	private AppResponse response;
 	
-	public ResponseEntity<AppResponse> createItem(ItemDto tempItem){
+	public ResponseEntity<AppResponse> createItem(ItemDto tempItem) throws IOException{
 		Item item = new Item();
 		item.setCreatedAt(new Date());
 		item.setDescription(tempItem.getDescription());
-		item.setImage(tempItem.getImage());
+		item.setImage(tempItem.getImage().getBytes());
 		item.setName(tempItem.getName());
 		item.setPrice(tempItem.getPrice());
 		itemRepository.save(item);
@@ -47,7 +49,7 @@ public class ItemService {
 	}
 	
 	public ResponseEntity<AppResponse> findItemByName(String name){
-		Optional<Item> item = itemRepository.findByItemName(name);
+		Optional<Item> item = itemRepository.findByName(name);
 		if(item.isEmpty()) {
 			response.getMap().put("data", null);
 			response.getMap().put("message", "item name doesn't exist");

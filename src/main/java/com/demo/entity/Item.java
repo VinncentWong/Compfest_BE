@@ -2,10 +2,12 @@ package com.demo.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +25,8 @@ public class Item {
 	
 	private String description;
 	
-	private MultipartFile image;
+	@Lob
+	private byte[] image;
 	
 	private Integer price;
 	
