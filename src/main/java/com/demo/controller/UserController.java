@@ -17,6 +17,7 @@ import com.demo.service.UserService;
 import com.demo.util.AppResponse;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"*"}, methods = {RequestMethod.DELETE, RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.PATCH, RequestMethod.POST, RequestMethod.PUT})
 public class UserController {
 	
 	@Autowired

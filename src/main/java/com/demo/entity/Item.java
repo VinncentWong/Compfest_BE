@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Entity
@@ -21,7 +23,7 @@ public class Item {
 	
 	private String description;
 	
-	private byte[] image;
+	private MultipartFile image;
 	
 	private Integer price;
 	

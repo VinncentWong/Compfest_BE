@@ -31,13 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
-        corsConfiguration.setAllowedOrigins(List.of("*"));
-        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT","OPTIONS","PATCH", "DELETE"));
-        corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setExposedHeaders(List.of("Authorization"));
-        
 		http
 		.authorizeRequests()
 		.anyRequest()
@@ -46,31 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.addFilterAt(new CustomUsernamePasswordFilter(), UsernamePasswordAuthenticationFilter.class)
 		.addFilterAfter(new JwtFilter(), CustomUsernamePasswordFilter.class)
 		.csrf().disable()
-		.cors().configurationSource(request -> corsConfiguration);
-//		.cors(cors -> {
-//			CorsConfigurationSource source = (request) -> {
-//				CorsConfiguration configuration = new CorsConfiguration();
-//				configuration.setAllowCredentials(true);
-//				configuration.setAllowedOrigins(List.of("http://192.168.1.20:3000"));
-//				configuration.setAllowedHeaders(List.of("*"));
-//				configuration.setAllowedMethods(List.of("*"));
-//				configuration.setExposedHeaders(List.of("Access-Control-Allow-Origin", "Access-Control-Request-Headers", "Access-Control-Allow-Credentials", "Access-Control-Request-Method"));
-//				return configuration;
-//			};
-//			cors.configurationSource(source);
-//		});
+		.cors();
 	}
-//	@Bean
-//	public CorsFilter corsFilter() {
-//		CorsConfiguration corsConfiguration = new CorsConfiguration();
-//		corsConfiguration.setAllowCredentials(true);
-//		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-//		corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
-//		corsConfiguration.setExposedHeaders(Arrays.asList("*"));
-//		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-//		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-//		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
-//		return new CorsFilter(urlBasedCorsConfigurationSource);
-//		
-//	}
 }
