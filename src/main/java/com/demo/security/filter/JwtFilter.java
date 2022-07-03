@@ -30,10 +30,12 @@ public class JwtFilter extends OncePerRequestFilter{
 			throws ServletException, IOException {
 		log.info("Masuk ke jwt filter");
 		String header = request.getHeader("Authorization");
+		log.info("header = " + header);
 		if(!header.startsWith("Bearer") || header == null) {
 			throw new ServletException("Token doesn't valid");
 		}
 		String token = header.substring(7);
+		log.info("validasi jwt filter = " + new JwtUtil().validateToken(token));
 		if(new JwtUtil().validateToken(token)) {
 			List<GrantedAuthority> list = new ArrayList<>();
 			list.add(new SimpleGrantedAuthority("USER"));

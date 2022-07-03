@@ -37,6 +37,12 @@ public class UserService {
 	private static final Logger log = LoggerFactory.getLogger(UserService.class);
 	
 	public ResponseEntity<AppResponse> createUser(UserDto tempUser){
+		Optional<User> validateUser = userRepository.findByStudentNumber(tempUser.getStudentNumber());
+		if(validateUser.isPresent()) {
+			response.getMap().put("message", "Error, user already exist!");
+			response.getMap().put("data", null);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 		User user = new User();
 		user.setStudentNumber(tempUser.getStudentNumber());
 		user.setPassword(tempUser.getPassword());
