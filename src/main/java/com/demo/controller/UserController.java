@@ -36,4 +36,9 @@ public class UserController {
 	public ResponseEntity<AppResponse> getUserById(@PathVariable Long id){
 		return userService.findUserById(id);
 	}
+	
+	@PostMapping("/addbalance/{id}")
+	public ResponseEntity<AppResponse> addBalance(@PathVariable Integer balance, @PathVariable Long id){
+		return userService.addBalance(balance, id);
+	}
 }

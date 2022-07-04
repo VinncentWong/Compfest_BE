@@ -82,4 +82,17 @@ public class UserService {
 		response.getMap().put("data", user.get());
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
+	
+	public ResponseEntity<AppResponse> addBalance(Integer balance, Long id){
+		Optional<User> user = userRepository.findById(id);
+		if(user.isEmpty()) {
+			response.getMap().put("message", "Error");
+			response.getMap().put("data", null);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		}
+		user.get().setBalance(balance);
+		response.getMap().put("message", "Success");
+		response.getMap().put("data", user.get());
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
 }
