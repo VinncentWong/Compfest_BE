@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.dto.UserDto;
+import com.demo.entity.User;
 import com.demo.service.UserService;
 import com.demo.util.AppResponse;
 
@@ -38,7 +39,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/addbalance/{id}")
-	public ResponseEntity<AppResponse> addBalance(@PathVariable Integer balance, @PathVariable Long id){
-		return userService.addBalance(balance, id);
+	public ResponseEntity<AppResponse> addBalance(@RequestBody User user, @PathVariable Long id){
+		return userService.addBalance(user.getBalance(), id);
 	}
 }

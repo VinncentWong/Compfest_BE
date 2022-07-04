@@ -60,7 +60,7 @@ public class UserService {
 		if(bcrypt.bcrypt().matches(tempUser.getPassword(), user.get().getPassword())) {
 			String token = jwt.generateToken(user.get().getId(), user.get().getStudentNumber());
 			response.getMap().put("message", "Success");
-			response.getMap().put("data", user);
+			response.getMap().put("data", user.get());
 			response.getMap().put("token", token);
 			log.info("response berhasil = " + response);
 			return ResponseEntity.status(HttpStatus.OK).body(response);
