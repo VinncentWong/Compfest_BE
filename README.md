@@ -19,14 +19,14 @@ Kantin Kejujuran is a task to create a website with several cases from Compfest 
 ```spring.datasource.url=jdbc:mysql://localhost:3306/your-database-name```
 
 ## Endpoint that are available on this service
-## User Entity
+#### User Entity
 ```
     1. "/registration" -> User Registration
     2. "/login" -> User Login
     3. "/user/{id}" -> For getting user with current ID -> Require JWT Token
     4. "/addbalance/{id}" -> For adding user balance with current ID -> Require JWT Token
 ```
-## Item Entity 
+#### Item Entity 
 #### ( All endpoints that related to item entity required JWT Token so User should be successfully login!)
 ```
     1. "/item/additem" -> Add new item
