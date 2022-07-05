@@ -32,6 +32,7 @@ Kantin Kejujuran is a task to create a website with several cases from Compfest 
     1. "/item/additem" -> Add new item
     2. "/item/deleteitem/id" -> Delete item with current ID
     3. "/item/getitem" -> Get Item by Item Name ( Please input item name in HTTP header)
+    with header = search : value
     4. "/item/getitems" -> Get all items that exist in database
 ```
 
