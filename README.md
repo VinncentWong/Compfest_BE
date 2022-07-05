@@ -1,4 +1,4 @@
-# Kantin Kejujuran
+# Kantin Kejujuran - BE
 Kantin Kejujuran is a task to create a website with several cases from Compfest UI. There are several features that you should make in this website.
 
 ## How to run
